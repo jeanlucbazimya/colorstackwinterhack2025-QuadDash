@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import LandingPage from './pages/LandingPage';
 import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
 import DriverRegistrationPage from './pages/DriverRegistrationPage';
 
-type PageType = 'landing' | 'signin' | 'driver';
+type PageType = 'landing' | 'signin' | 'signup' | 'driver';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('landing');
@@ -11,6 +12,7 @@ export default function App() {
   const pages: Record<PageType, React.ReactNode> = {
     landing: <LandingPage />,
     signin: <SignInPage />,
+    signup: <SignUpPage />,
     driver: <DriverRegistrationPage />,
   };
 
@@ -37,6 +39,16 @@ export default function App() {
           }`}
         >
           Sign In
+        </button>
+        <button
+          onClick={() => setCurrentPage('signup')}
+          className={`px-3 py-1.5 text-sm rounded ${
+            currentPage === 'signup'
+              ? 'bg-primary-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Sign Up
         </button>
         <button
           onClick={() => setCurrentPage('driver')}
