@@ -3,10 +3,12 @@ import LandingPage from './pages/LandingPage';
 import SignInPage from './pages/SignInPage';
 import DriverRegistrationPage from './pages/DriverRegistrationPage';
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState('landing');
+type PageType = 'landing' | 'signin' | 'driver';
 
-  const pages = {
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<PageType>('landing');
+
+  const pages: Record<PageType, React.ReactNode> = {
     landing: <LandingPage />,
     signin: <SignInPage />,
     driver: <DriverRegistrationPage />,

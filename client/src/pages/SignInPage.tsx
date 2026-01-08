@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import logo from '../assets/images/logo.png';
 
 export default function SignInPage() {
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setKeepLoggedIn(e.target.checked);
+  };
 
   return (
     <div className="min-h-screen bg-white flex">
@@ -34,7 +38,7 @@ export default function SignInPage() {
                 type="checkbox"
                 id="keepLoggedIn"
                 checked={keepLoggedIn}
-                onChange={(e) => setKeepLoggedIn(e.target.checked)}
+                onChange={handleCheckboxChange}
                 className="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
               />
               <label htmlFor="keepLoggedIn" className="ml-2 text-sm text-gray-600">

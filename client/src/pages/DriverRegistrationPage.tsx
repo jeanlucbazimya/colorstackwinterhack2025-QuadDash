@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import Button from '../components/Button';
 
 export default function DriverRegistrationPage() {
   const [agreeToComms, setAgreeToComms] = useState(false);
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setAgreeToComms(e.target.checked);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
@@ -101,7 +105,7 @@ export default function DriverRegistrationPage() {
                     type="checkbox"
                     id="agreeComms"
                     checked={agreeToComms}
-                    onChange={(e) => setAgreeToComms(e.target.checked)}
+                    onChange={handleCheckboxChange}
                     className="w-4 h-4 mt-0.5 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
                   />
                   <label htmlFor="agreeComms" className="text-sm text-gray-600">

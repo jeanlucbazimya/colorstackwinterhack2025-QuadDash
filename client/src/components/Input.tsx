@@ -1,4 +1,12 @@
-import { useState } from 'react';
+import { useState, InputHTMLAttributes, ReactNode } from 'react';
+
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  label?: string;
+  type?: 'text' | 'email' | 'password' | 'tel' | 'number' | 'search' | 'url';
+  placeholder?: string;
+  icon?: ReactNode;
+  className?: string;
+}
 
 export default function Input({
   label,
@@ -7,7 +15,7 @@ export default function Input({
   icon,
   className = '',
   ...props
-}) {
+}: InputProps) {
   const [focused, setFocused] = useState(false);
   const [hasValue, setHasValue] = useState(false);
   const [showPassword, setShowPassword] = useState(false);

@@ -1,7 +1,7 @@
 import logo from '../assets/images/logo.png';
 
 export default function Footer() {
-  const footerLinks = {
+  const footerLinks: Record<string, string[]> = {
     'Our Product': ['Career', 'Car', 'Packages', 'Features', 'Priceline'],
     'Resources': ['Download', 'Help Centre', 'Guides', 'Partner Network', 'Cruises', 'Developer'],
     'About QuadDash': ['Why choose us', 'Our Story', 'Investor Relations', 'Press Center', 'Advertise'],

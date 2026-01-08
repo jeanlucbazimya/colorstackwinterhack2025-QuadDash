@@ -1,5 +1,19 @@
 import Button from './Button';
 
+interface DriverCardProps {
+  name: string;
+  rating: number;
+  reviews: number;
+  destination?: string;
+  distance?: string;
+  passengers?: string;
+  transmission?: string;
+  airConditioning?: boolean;
+  doors?: number;
+  price: number;
+  priceUnit?: string;
+}
+
 export default function DriverCard({
   name,
   rating,
@@ -12,7 +26,7 @@ export default function DriverCard({
   doors,
   price,
   priceUnit = '/day',
-}) {
+}: DriverCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
       <div className="h-40 bg-gray-200 flex items-center justify-center">

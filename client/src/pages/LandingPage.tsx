@@ -1,10 +1,38 @@
+import { ReactNode } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import DriverCard from '../components/DriverCard';
 
+interface Driver {
+  name: string;
+  rating: number;
+  reviews: number;
+  destination?: string;
+  distance?: string;
+  passengers: string;
+  transmission: string;
+  airConditioning: boolean;
+  doors: number;
+  price: number;
+  priceUnit?: string;
+}
+
+interface Testimonial {
+  rating: number;
+  text: string;
+  name: string;
+  location: string;
+}
+
+interface Step {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
 export default function LandingPage() {
-  const drivers = [
+  const drivers: Driver[] = [
     {
       name: 'Dharambir Agrawal',
       rating: 4.8,
@@ -50,7 +78,7 @@ export default function LandingPage() {
     },
   ];
 
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
       rating: 5,
       text: '"Ubers are super expensive, and QuadDash has been my life-saver in moments of urgency."',
@@ -62,6 +90,36 @@ export default function LandingPage() {
       text: '"I feel very secure when using caretall\'s services. Your customer care team is very enthusiastic and the driver is always on time."',
       name: 'Wisdom Chiekwene',
       location: 'From Houston, Texas',
+    },
+  ];
+
+  const steps: Step[] = [
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      title: 'Choose location',
+      description: 'Choose your and find your best car',
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      ),
+      title: 'Pick-up date',
+      description: 'Select your pick up date and time to book your car',
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        </svg>
+      ),
+      title: 'Book a car ride',
+      description: "Book a ride with a student and you're connected",
     },
   ];
 
@@ -167,35 +225,7 @@ export default function LandingPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-12">Book with 3 working steps</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                ),
-                title: 'Choose location',
-                description: 'Choose your and find your best car',
-              },
-              {
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                ),
-                title: 'Pick-up date',
-                description: 'Select your pick up date and time to book your car',
-              },
-              {
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                  </svg>
-                ),
-                title: 'Book a car ride',
-                description: "Book a ride with a student and you're connected",
-              },
-            ].map((step, index) => (
+            {steps.map((step, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div className="w-16 h-16 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center mb-4">
                   {step.icon}
