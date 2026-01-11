@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List
+from typing import Any, Dict
 from pydantic import BaseSettings
 
 
@@ -16,18 +16,30 @@ class Settings(BaseSettings):
     email_sender: str = "noreply@campusrides.local"
     email_outbox_path: Path = BASE_DIR / "outbox" / "emails.log"
 
-    universities: Dict[str, Dict[str, List[str]]] = {
-        "stateu": {
-            "name": "State University",
-            "domains": ["stateu.edu"],
+    universities: Dict[str, Dict[str, Any]] = {
+        "grambling": {
+            "name": "Grambling State University",
+            "domains": ["gram.edu"],
         },
-        "techu": {
-            "name": "Tech University",
-            "domains": ["techu.edu"],
+        "howard": {
+            "name": "Howard University",
+            "domains": ["howard.edu"],
         },
-        "citycollege": {
-            "name": "City College",
-            "domains": ["citycollege.edu"],
+        "spelman": {
+            "name": "Spelman College",
+            "domains": ["spelman.edu"],
+        },
+        "morehouse": {
+            "name": "Morehouse College",
+            "domains": ["morehouse.edu"],
+        },
+        "famu": {
+            "name": "Florida A&M University",
+            "domains": ["famu.edu"],
+        },
+        "hampton": {
+            "name": "Hampton University",
+            "domains": ["hamptonu.edu"],
         },
     }
 

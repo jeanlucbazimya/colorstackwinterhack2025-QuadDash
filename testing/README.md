@@ -1,1 +1,0 @@
-# colorstackwinterhack2025-QuadDash

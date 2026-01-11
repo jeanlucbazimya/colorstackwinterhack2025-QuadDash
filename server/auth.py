@@ -19,6 +19,11 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 def _validate_university_email(email: str, university_key: str) -> str:
     domain = email.split("@")[-1].lower()
+
+    # Reject non-.edu emails
+    if not domain.endswith(".edu"):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Only .edu email addresses are allowed")
+
     university = settings.universities.get(university_key)
     if not university:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Unknown university")
@@ -26,6 +31,22 @@ def _validate_university_email(email: str, university_key: str) -> str:
     if domain not in allowed_domains:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email must use a school domain")
     return university["name"]
+
+
+def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)) -> User:
+    """Dependency to get the current authenticated and verified user."""
+    user_id = decode_token(token)
+    if not user_id:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+
+    user = db.query(User).filter(User.id == int(user_id)).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
+    if not user.is_verified:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Email not verified")
+
+    return user
 
 
 @router.get("/universities", response_model=schemas.UniversitiesResponse)
@@ -56,6 +77,7 @@ def register(
             full_name=payload.full_name,
             role=payload.role,
             university_key=payload.university_key,
+            license_plate=payload.license_plate,
         )
         db.add(user)
         db.flush()  # to get user.id for FK
@@ -64,6 +86,7 @@ def register(
         user.full_name = payload.full_name
         user.role = payload.role
         user.university_key = payload.university_key
+        user.license_plate = payload.license_plate
 
     # Invalidate previous codes
     db.query(VerificationCode).filter(
@@ -130,12 +153,5 @@ def login(payload: schemas.LoginRequest, db: Session = Depends(get_db)):
 
 
 @router.get("/me", response_model=schemas.UserOut)
-def me(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    user_id = decode_token(token)
-    if not user_id:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
-
-    user = db.query(User).filter(User.id == int(user_id)).first()
-    if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    return user
+def me(current_user: User = Depends(get_current_user)):
+    return current_user
