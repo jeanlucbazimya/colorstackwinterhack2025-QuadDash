@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from typing import Optional
+import hashlib
 
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -10,10 +11,16 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def hash_password(password: str) -> str:
+    # Bcrypt has a 72-byte limit, so hash the password first if it's longer
+    if len(password.encode('utf-8')) > 72:
+        password = hashlib.sha256(password.encode()).hexdigest()
     return pwd_context.hash(password)
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
+    # Apply the same pre-hashing for passwords longer than 72 bytes
+    if len(plain_password.encode('utf-8')) > 72:
+        plain_password = hashlib.sha256(plain_password.encode()).hexdigest()
     return pwd_context.verify(plain_password, hashed_password)
 
 
