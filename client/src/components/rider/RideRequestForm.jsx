@@ -25,7 +25,10 @@ export default function RideRequestForm({ onSuccess }) {
 
     try {
       // Convert datetime-local to ISO format
-      const rideDate = new Date(formData.ride_date).toISOString();
+      const localDate = new Date(formData.ride_date);
+      const rideDate = new Date(
+  localDate.getTime() - localDate.getTimezoneOffset() * 60000
+).toISOString();
 
       await ridesApi.createRequest({
         pickup_location: formData.pickup_location,
