@@ -23,20 +23,9 @@ A web-based campus ride connector that enables verified students from the same u
 
 ## Project Description
 
-QuadDash is a campus ride-sharing platform built specifically for students at rural Historically Black Colleges and Universities (HBCUs). Unlike commercial rideshare services like Uber and Lyft that are often unreliable or completely unavailable in these areas, QuadDash provides a trusted, community-driven solution for student transportation needs.
+QuadDash is a campus ride sharing platform built specifically for students at rural Historically Black Colleges and Universities (HBCUs). Unlike commercial rideshare services like Uber and Lyft that are often unreliable or completely unavailable in these areas, QuadDash provides a trusted, community driven solution for student transportation needs.
 
 The platform connects verified students who need rides (Riders) with fellow students who can provide them (Drivers), all within the safety of their own university community.
-
-### Supported Universities
-
-- Grambling State University
-- Howard University
-- Spelman College
-- Morehouse College
-- Florida A&M University
-- Hampton University
-
----
 
 ## The Problem
 
@@ -53,28 +42,31 @@ Students at rural HBCUs face significant transportation challenges:
 QuadDash addresses these challenges through three core principles:
 
 ### 1. Safety & Trust
+
 - **University Email Verification**: Only `.edu` email addresses from supported universities can register
-- **Campus-Only Access**: Rides are restricted to students from the same university
+- **Campus Only Access**: Rides are restricted to students from the same university
 - **Driver Verification**: Drivers must provide license plate information during registration
 
 ### 2. Accessibility
-- **Designed for Underserved Areas**: Built specifically for rural HBCUs where commercial rideshare services don't operate
-- **Simple Interface**: Easy-to-use platform that works on any device
-- **No Surge Pricing**: Community-driven platform without commercial pricing algorithms
 
-### 3. Human-Centered Design
-- **No Auto-Matching**: Drivers manually review and choose which ride requests to accept
+- **Designed for Underserved Areas**: Built specifically for rural HBCUs where commercial rideshare services don't operate
+- **Simple Interface**: Easy to use platform that works on any device
+- **No Surge Pricing**: Community driven platform without commercial pricing algorithms
+
+### 3. Human Centered Design
+
+- **No Auto Matching**: Drivers manually review and choose which ride requests to accept
 - **Transparent Process**: Riders can see when their request is pending, accepted, or completed
-- **Review System**: Post-ride reviews help maintain community accountability
+- **Review System**: Post ride reviews help maintain community accountability
 
 ---
 
 ## Features
 
 - **University Email Verification** - Secure registration using .edu emails
-- **Role-Based System** - Choose to be a Rider or Driver
-- **Campus-Scoped Rides** - All rides stay within your university community
-- **Real-Time Request Flow** - Create requests and get responses from available drivers
+- **Role Based System** - Choose to be a Rider or Driver
+- **Campus Scoped Rides** - All rides stay within your university community
+- **Real Time Request Flow** - Create requests and get responses from available drivers
 - **Driver Dashboard** - Drivers can view, accept, or decline pending ride requests
 - **Ride Tracking** - Monitor your ride status from request to completion
 - **Review System** - Rate and review completed rides
@@ -84,24 +76,26 @@ QuadDash addresses these challenges through three core principles:
 ## Technologies Used
 
 ### Backend
-| Technology | Purpose |
-|------------|---------|
-| FastAPI 0.115.5 | Modern, high-performance Python web framework |
-| SQLAlchemy 2.0.23 | SQL toolkit and ORM |
-| SQLite | Lightweight database (configurable to PostgreSQL) |
-| python-jose | JWT token generation and validation |
-| Passlib + bcrypt | Secure password hashing |
-| Pydantic | Data validation using Python type hints |
-| Uvicorn | ASGI server for running the application |
+
+| Technology        | Purpose                                           |
+| ----------------- | ------------------------------------------------- |
+| FastAPI 0.115.5   | Modern, high-performance Python web framework     |
+| SQLAlchemy 2.0.23 | SQL toolkit and ORM                               |
+| SQLite            | Lightweight database (configurable to PostgreSQL) |
+| python-jose       | JWT token generation and validation               |
+| Passlib + bcrypt  | Secure password hashing                           |
+| Pydantic          | Data validation using Python type hints           |
+| Uvicorn           | ASGI server for running the application           |
 
 ### Frontend
-| Technology | Purpose |
-|------------|---------|
-| React 19.2.0 | UI component library |
-| Vite 7.2.4 | Fast build tool and development server |
-| TailwindCSS 3.4.19 | Utility-first CSS framework |
-| React Router DOM 7.12.0 | Client-side routing |
-| Axios 1.13.2 | HTTP client for API requests |
+
+| Technology              | Purpose                                |
+| ----------------------- | -------------------------------------- |
+| React 19.2.0            | UI component library                   |
+| Vite 7.2.4              | Fast build tool and development server |
+| TailwindCSS 3.4.19      | Utility-first CSS framework            |
+| React Router DOM 7.12.0 | Client-side routing                    |
+| Axios 1.13.2            | HTTP client for API requests           |
 
 ---
 
@@ -117,7 +111,7 @@ QuadDash addresses these challenges through three core principles:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/colorstackwinterhack2025-QuadDash.git
+git clone https://github.com/jeanlucbazimya/colorstackwinterhack2025-QuadDash.git
 cd colorstackwinterhack2025-QuadDash
 
 # Create and activate virtual environment
@@ -125,7 +119,7 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install Python dependencies
-pip install -r requirements.txt
+pip install -r server/requirements.txt
 
 # Start the backend server
 uvicorn server.main:app --reload
@@ -148,15 +142,6 @@ npm run dev
 ```
 
 The frontend will be available at `http://localhost:5173`
-
-### Environment Variables (Optional)
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `APP_JWT_SECRET` | Secret key for JWT signing | `change-me` |
-| `APP_ACCESS_TOKEN_EXPIRE_MINUTES` | Token expiration time | `1440` (24 hours) |
-| `APP_DATABASE_URL` | Database connection string | SQLite |
-| `VITE_API_URL` | Backend API URL (frontend) | Render deployment URL |
 
 ---
 
@@ -192,6 +177,15 @@ Pending → Accepted → Completed
 
 ```
 colorstackwinterhack2025-QuadDash/
+├── server/                 # FastAPI Backend
+│   ├── main.py            # App entry point
+│   ├── auth.py            # Authentication endpoints
+│   ├── rides.py           # Ride management endpoints
+│   ├── models.py          # Database models
+│   ├── schemas.py         # Request/response schemas
+│   ├── security.py        # JWT and password utilities
+│
+│
 ├── client/                 # React Frontend
 │   ├── src/
 │   │   ├── pages/         # Page components
@@ -200,16 +194,9 @@ colorstackwinterhack2025-QuadDash/
 │   │   └── api/           # API client
 │   ├── package.json       # Node dependencies
 │   └── vite.config.js     # Build configuration
-│
-├── server/                 # FastAPI Backend
-│   ├── main.py            # App entry point
-│   ├── auth.py            # Authentication endpoints
-│   ├── rides.py           # Ride management endpoints
-│   ├── models.py          # Database models
-│   ├── schemas.py         # Request/response schemas
-│   └── security.py        # JWT and password utilities
-│
-├── requirements.txt        # Python dependencies
+|
+├── requirements.txt   # Dependencies
+|
 └── README.md              # This file
 ```
 
@@ -221,5 +208,3 @@ colorstackwinterhack2025-QuadDash/
 - **API Documentation**: [https://colorstackwinterhack2025-quaddash.onrender.com/docs](https://colorstackwinterhack2025-quaddash.onrender.com/docs)
 
 ---
-
-*Built for the ColorStack Winter Hackathon 2025*
