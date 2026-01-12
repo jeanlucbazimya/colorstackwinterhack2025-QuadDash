@@ -18,9 +18,6 @@ export default function App() {
 
   return (
     <div>
-      <header>
-        <h1>QuadDash</h1>
-      </header>
       {/* Dev Navigation - Remove in production */}
       <div className="fixed bottom-4 right-4 z-50 bg-white rounded-lg shadow-lg p-2 flex gap-2">
         <button
