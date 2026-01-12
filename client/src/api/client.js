@@ -47,6 +47,10 @@ export const ridesApi = {
   respondToRequest: (rideId, action) =>
     apiClient.post(`/rides/${rideId}/respond`, { action }),
   getMyAcceptedRides: () => apiClient.get('/rides/my-accepted'),
+  cancelRide: (rideId) => apiClient.post(`/rides/${rideId}/cancel`),
+  completeRide: (rideId) => apiClient.post(`/rides/${rideId}/complete`),
+  submitReview: (rideId, data) => apiClient.post(`/rides/${rideId}/review`, data),
+  getReview: (rideId) => apiClient.get(`/rides/${rideId}/review`),
 };
 
 export default apiClient;

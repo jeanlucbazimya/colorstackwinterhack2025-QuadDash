@@ -108,3 +108,21 @@ class RideRequestOut(BaseModel):
 
 class RideRequestListResponse(BaseModel):
     rides: List[RideRequestOut]
+
+
+# Review schemas
+class ReviewCreate(BaseModel):
+    rating: int = Field(ge=1, le=5)
+    comment: str = Field(min_length=1, max_length=500)
+
+
+class ReviewOut(BaseModel):
+    id: int
+    ride_id: int
+    rating: int
+    comment: str
+    created_at: datetime
+    reviewer: UserOut
+
+    class Config:
+        orm_mode = True

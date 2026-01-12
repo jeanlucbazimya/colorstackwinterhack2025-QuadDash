@@ -16,6 +16,8 @@ class RideStatus(str, enum.Enum):
     pending = "pending"
     accepted = "accepted"
     declined = "declined"
+    completed = "completed"
+    cancelled = "cancelled"
 
 
 class User(Base):
@@ -72,3 +74,18 @@ class RideRequest(Base):
 
     rider = relationship("User", foreign_keys=[rider_id], back_populates="ride_requests_as_rider")
     driver = relationship("User", foreign_keys=[driver_id], back_populates="ride_requests_as_driver")
+    review = relationship("Review", back_populates="ride", uselist=False, cascade="all, delete-orphan")
+
+
+class Review(Base):
+    __tablename__ = "reviews"
+
+    id = Column(Integer, primary_key=True, index=True)
+    ride_id = Column(Integer, ForeignKey("ride_requests.id", ondelete="CASCADE"), nullable=False, unique=True)
+    reviewer_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    rating = Column(Integer, nullable=False)  # 1-5
+    comment = Column(String, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    ride = relationship("RideRequest", back_populates="review")
+    reviewer = relationship("User")

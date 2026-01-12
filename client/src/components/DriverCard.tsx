@@ -28,36 +28,83 @@ export default function DriverCard({
   priceUnit = '/day',
 }: DriverCardProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-      <div className="h-40 bg-gray-200 flex items-center justify-center">
-        <svg className="w-20 h-20 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M8 7h8m-8 4h8m-8 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
+    <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
+      {/* Header with Image */}
+      <div className="relative h-48 bg-gradient-to-br from-blue-400 to-green-400 flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <svg className="w-full h-full" fill="currentColor" viewBox="0 0 100 100">
+            <circle cx="25" cy="25" r="15" opacity="0.3"/>
+            <circle cx="75" cy="75" r="20" opacity="0.3"/>
+          </svg>
+        </div>
+        <svg className="w-24 h-24 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7c1.657 0 3-1.343 3-3s-1.343-3-3-3S5 1.343 5 3s1.343 3 3 3zm0 0c1.657 0 3 1.343 3 3v7c0 1.657-1.343 3-3 3s-3-1.343-3-3V10c0-1.657 1.343-3 3-3zm9 0c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm0 0c1.657 0 3 1.343 3 3v7c0 1.657-1.343 3-3 3s-3-1.343-3-3v-7c0-1.657 1.343-3 3-3z" />
         </svg>
       </div>
 
-      <div className="p-4">
-        <div className="flex items-start justify-between mb-2">
-          <h3 className="font-semibold text-gray-900">{name}</h3>
+      <div className="p-6">
+        {/* Name and Rating */}
+        <div className="flex items-start justify-between mb-3">
+          <h3 className="font-bold text-xl text-gray-900">{name}</h3>
+          <div className="flex items-center gap-1 bg-yellow-50 px-3 py-1 rounded-full">
+            <span className="text-yellow-400 text-lg">★</span>
+            <span className="font-bold text-gray-900">{rating}</span>
+            <span className="text-xs text-gray-600">({reviews})</span>
+          </div>
         </div>
 
-        <div className="flex items-center gap-1 mb-3">
-          <span className="text-yellow-400">★</span>
-          <span className="font-semibold text-sm">{rating}</span>
-          <span className="text-gray-400 text-sm">({reviews} reviews)</span>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-3 text-xs text-gray-500">
-          {destination && (
-            <span className="flex items-center gap-1">
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        {/* Features Grid */}
+        <div className="grid grid-cols-2 gap-3 mb-5 py-4 border-y border-gray-100">
+          {passengers && (
+            <div className="flex items-center gap-2 text-sm">
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10a3 3 0 11-6 0 3 3 0 016 0zM6 20h12a6 6 0 006-6V4a6 6 0 00-6-6H6a6 6 0 00-6 6v10a6 6 0 006 6z" />
               </svg>
-              {destination}
-            </span>
+              <span className="text-gray-700 font-medium">{passengers} seats</span>
+            </div>
           )}
-          {distance && (
-            <span className="flex items-center gap-1">
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {transmission && (
+            <div className="flex items-center gap-2 text-sm">
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span className="text-gray-700 font-medium">{transmission}</span>
+            </div>
+          )}
+          {airConditioning && (
+            <div className="flex items-center gap-2 text-sm">
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4v-4m0 0H8m4 0h4" />
+              </svg>
+              <span className="text-gray-700 font-medium">A/C</span>
+            </div>
+          )}
+          {doors && (
+            <div className="flex items-center gap-2 text-sm">
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              <span className="text-gray-700 font-medium">{doors} doors</span>
+            </div>
+          )}
+        </div>
+
+        {/* Footer with Price and Button */}
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="text-xs text-gray-500 uppercase tracking-wide">Price</p>
+            <p className="text-2xl font-bold text-gray-900">
+              ${price}<span className="text-sm text-gray-600 font-normal ml-1">{priceUnit}</span>
+            </p>
+          </div>
+          <Button variant="primary" size="sm" className="bg-blue-600 hover:bg-blue-700">
+            Select
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
               {distance}
