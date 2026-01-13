@@ -207,4 +207,23 @@ colorstackwinterhack2025-QuadDash/
 - **Frontend Application**: [https://curious-rolypoly-15ca78.netlify.app](https://curious-rolypoly-15ca78.netlify.app)
 - **API Documentation**: [https://colorstackwinterhack2025-quaddash.onrender.com/docs](https://colorstackwinterhack2025-quaddash.onrender.com/docs)
 
----
+- **Demo Video**: [https://youtu.be/v32GwrlSsck](https://youtu.be/v32GwrlSsck)
+
+## Team QuadDash
+
+**Prevailer Nchekwube**: UI/UX Designer
+**Dharambir Agrawal**: Backend Engineer
+**Wisdom Awele Chiekwene**: Product Manager
+**Jean Luc Bazimya**: Technical Lead (Full-Stack)
+
+## AI Tooling
+
+Thanks a lot to Anthropic. We used Claude as an AI development assistant for rapidly prototyping, debugging, and reasoning through implementation decisions. The team solely drove system design decisions and final implementations.
+
+## Screenshots
+
+![alt text](screenshots/1.jpeg)
+
+![alt text](screenshots/2.jpeg)
+
+## ![alt text](screenshots/3.jpeg)
