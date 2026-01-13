@@ -211,10 +211,10 @@ colorstackwinterhack2025-QuadDash/
 
 ## Team QuadDash
 
-**Prevailer Nchekwube**: UI/UX Designer
-**Dharambir Agrawal**: Backend Engineer
-**Wisdom Awele Chiekwene**: Product Manager
-**Jean Luc Bazimya**: Technical Lead (Full-Stack)
+1. **Prevailer Nchekwube**: UI/UX Designer
+2. **Dharambir Agrawal**: Backend Engineer
+3. **Wisdom Awele Chiekwene**: Product Manager
+4. **Jean Luc Bazimya**: Technical Lead (Full-Stack)
 
 ## AI Tooling
 
