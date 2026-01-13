@@ -208,6 +208,7 @@ colorstackwinterhack2025-QuadDash/
 - **API Documentation**: [https://colorstackwinterhack2025-quaddash.onrender.com/docs](https://colorstackwinterhack2025-quaddash.onrender.com/docs)
 
 - **Demo Video**: [https://youtu.be/v32GwrlSsck](https://youtu.be/v32GwrlSsck)
+- **Presentation file**: [https://www.canva.com/design/DAG-QXnrb3U/EkxL7LlpyeEIlxxv_jNQnQ/view?utm_content=DAG-QXnrb3U&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h829e9a86be](https://www.canva.com/design/DAG-QXnrb3U/EkxL7LlpyeEIlxxv_jNQnQ/view?utm_content=DAG-QXnrb3U&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h829e9a86be)
 
 ## Team QuadDash
 
@@ -222,8 +223,8 @@ Thanks a lot to Anthropic. We used Claude as an AI development assistant for rap
 
 ## Screenshots
 
-![alt text](screenshots/1.jpeg)
+![alt text](docs/1.jpeg)
 
-![alt text](screenshots/2.jpeg)
+![alt text](docs/2.jpeg)
 
-## ![alt text](screenshots/3.jpeg)
+![alt text](docs/3.jpeg)
